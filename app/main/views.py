@@ -62,4 +62,9 @@ def worksession():
     return render_template('worksession.html')
 
 @main.route('/timeforwork', methods=['GET', 'POST'])
+def timeforwork():
+    '''
+    Function the returns what the user plans to do during time for work.
+    '''
+    return render_template('time_for_work.html')
 
