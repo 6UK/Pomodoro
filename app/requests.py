@@ -95,4 +95,4 @@ def search_movie(movie_name):
 
 
     return search_movie_results
-    return search_movie_results
+    
