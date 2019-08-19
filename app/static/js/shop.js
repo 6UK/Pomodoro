@@ -1,60 +1,35 @@
-
-
-
 $(document).ready(function() {
-	$('.dot1').click(function() {
-		$('#lo').show();
-		$('#loo').hide();
-
-
-	});
-
-	$('.dot2').click(function() {
-		$('#lo').hide();
-		$('#loo').show();
-	});
-
-	$('.dot3').click(function() {
-		$('#loo').hide();
-		$('#l').show();
-	});
-
-	 $('#order').click(function() {
-    alert("were have received ur Order,Thank U And Welcome Once Again ")
-    });
-
-
-	 
-
+   function count_down(Inminutes) {
+       var countdown = Inminutes * 60 * 1000;
+       var timerId = setInterval(function() {
+           countdown -= 1000;
+           var min = Math.floor(countdown / (60 * 1000));
+           var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);
+           if (min < "10") { min = "0" + min; }
+           if (sec < "10") { sec = "0" + sec; }
+           if (countdown <= 0) {
+               clearInterval(timerId);
+               // var audio = new Audio('https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3');
+               var audio = new Audio('http://localhost:5000/static/media/service-bell_daniel_simion.mp3')
+               audio.play();
+               alert("End of pomodoro session")
+               $('.minutes').html(min);
+               $('.seconds').html(sec)
+           } else {
+               $('.minutes').html(min);
+               $('.seconds').html(sec);
+           }
+       }, 1000);
+   }
+   function stop() {
+       console.log("Stop button pressed...")
+   }
+   $("#startButton").click(function() {
+       var Inminutes = $("#duration").val()
+       console.log(Inminutes);
+       count_down(Inminutes);
+   });
+   $("#stopButton").click(function() {
+       stop();
+   });
 });
-
-
-
-var product=[];
-
-function fun(){
-  var x={};
-  x.price=document.getElementById('price').value;
-  x.title=document.getElementById('title').value;
-  product.push(x);
-    
-  var iDiv = document.createElement('div');
-  iDiv.id = product.length;
-  iDiv.className = 'block';
-  document.getElementsByTagName('body')[0].appendChild(iDiv);
-  
-  var para = document.createElement("span");
-  var node = document.createTextNode('Title: ' + x.title+' |                    ');
-  para.appendChild(node);
-
-  var element = document.getElementById(product.length);
-  element.appendChild(para);
-  
-  para = document.createElement("span");
-  node = document.createTextNode('Price: '+ x.price);
-  para.appendChild(node);
-  
-  element.appendChild(para);
-}
-
-
